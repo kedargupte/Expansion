@@ -3,7 +3,7 @@ package kedar.matrix;
 public class MatrixSpiralTraverse {
 
 	public static void main(String[] args) {
-		int rowLength = 1;
+		int rowLength = 3;
 		int columnLength = 5;
 		int seed = 10;
 		int bound = 10;
@@ -16,7 +16,7 @@ public class MatrixSpiralTraverse {
 			}
 			System.out.println();
 		}
-		System.out.print("\nSpiral TRaversal\n");
+		System.out.print("\nSpiral Traversal\n");
 		// Spiral traversal of matrix
 		/**
 		  	var1 : 0

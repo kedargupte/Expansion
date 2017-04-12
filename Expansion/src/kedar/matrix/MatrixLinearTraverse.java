@@ -3,7 +3,7 @@ package kedar.matrix;
 public class MatrixLinearTraverse {
 	
 	public static void main(String[] args) {
-		int rowLength = 1;
+		int rowLength = 2;
 		int columnLength = 3;
 		int seed = 10;
 		int bound = 10;

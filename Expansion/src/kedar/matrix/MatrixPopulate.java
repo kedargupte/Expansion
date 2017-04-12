@@ -15,4 +15,13 @@ public class MatrixPopulate {
 		return integerMatrix;
 	}
 
+	public static Matrix<Integer> getIntegerMatrix(int rowLength, int columnLength) {
+		Matrix<Integer> integerMatrix = new Matrix<Integer>(rowLength, columnLength);
+		for(int i = 0; i < rowLength; i++) {
+			for(int j = 0; j < columnLength; j++) {
+				integerMatrix.addElement(0, i, j);
+			}
+		}
+		return integerMatrix;
+	}
 }
