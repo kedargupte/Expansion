@@ -9,7 +9,7 @@ public class MatrixPopulate {
 		Random rand =  new Random(seed);
 		for(int i = 0; i < rowLength; i++) {
 			for(int j = 0; j < columnLength; j++) {
-				integerMatrix.addElement(new Integer(rand.nextInt(bound)), i, j);
+				integerMatrix.setElement(new Integer(rand.nextInt(bound)), i, j);
 			}
 		}
 		return integerMatrix;
@@ -19,7 +19,7 @@ public class MatrixPopulate {
 		Matrix<Integer> integerMatrix = new Matrix<Integer>(rowLength, columnLength);
 		for(int i = 0; i < rowLength; i++) {
 			for(int j = 0; j < columnLength; j++) {
-				integerMatrix.addElement(0, i, j);
+				integerMatrix.setElement(0, i, j);
 			}
 		}
 		return integerMatrix;

@@ -1,27 +1,33 @@
 package kedar.matrix;
 
+/*
+ * Placing N queens on a board in row major format
+ * All rows have to be covered, all columns need not be
+ */
 public class MatrixNQueens {
+	
+	private int solutionCount;
 
 	public static void main(String[] args) {
 		int rowLength = 8;
 		int columnLength = 8;
 		Matrix<Integer> booleanMatrix = MatrixPopulate.getIntegerMatrix(rowLength, columnLength);
 		MatrixNQueens obj = new MatrixNQueens();
-		if(obj.getNQueensPosition(booleanMatrix, 0)) {
-			System.out.println("Output");
-			for(int i = 0; i < rowLength; i++) {
-				for(int j = 0; j < columnLength; j++) {
-					System.out.print(booleanMatrix.getElement(i, j) + " ");
-				}
-				System.out.println();
-			}
-		} else {
-			System.out.println("Unable to map N Queens");
-		}
+		obj.solutionCount = 0;
+		obj.getNQueensPosition(booleanMatrix, 0);
+		System.out.println("Total number of possible combinations for placing N queens on " + rowLength + "x" + columnLength + " board are : " + obj.solutionCount);
 	}
 	
 	private boolean getNQueensPosition(Matrix<Integer> booleanMatrix, int currentRow) {
 		if(currentRow == booleanMatrix.getRowLength()) {
+			solutionCount++;
+			System.out.println("Output : " + solutionCount);
+			for(int i = 0; i < booleanMatrix.getRowLength(); i++) {
+				for(int j = 0; j < booleanMatrix.getColumnLength(); j++) {
+					System.out.print(booleanMatrix.getElement(i, j) + " ");
+				}
+				System.out.println();
+			}
 			return true;
 		}
 		for(int i = 0; i < booleanMatrix.getColumnLength(); i++) {
@@ -30,11 +36,13 @@ public class MatrixNQueens {
 					&& !diagonalClash(booleanMatrix, currentRow, i)) {
 				
 				booleanMatrix.setElement(1, currentRow, i);
-				System.out.println("* Processing : " + currentRow + "," + i);
-				if(getNQueensPosition(booleanMatrix, (1 + currentRow))) {
-					return true;
-				}
-				
+//				System.out.println("Processing : " + currentRow + "," + i);
+//				Get back to calling method if a solution is found
+//				if(getNQueensPosition(booleanMatrix, (1 + currentRow))) {
+//					return true;
+//				}
+//				For all possible solutions, go along all possible paths
+				getNQueensPosition(booleanMatrix, (1 + currentRow));
 				booleanMatrix.setElement(0, currentRow, i);
 			}
 		}

@@ -1,6 +1,13 @@
 package kedar.matrix;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+class matrixValue<T> {
+	public int x;
+	public int y;
+	public T value;
+}
 
 public class Matrix<T> {
 	
@@ -21,7 +28,7 @@ public class Matrix<T> {
 		this.columnLength = columnLength;
 		this.matrix = new ArrayList<ArrayList<T>>(rowLength);
 		for(int i = 0; i < rowLength; i++) {
-			ArrayList<T> columnList = new ArrayList<T>(columnLength);
+			ArrayList<T> columnList = new ArrayList<T>(Collections.nCopies(columnLength, null));
 			matrix.add(columnList);
 		}
 	}
@@ -38,12 +45,5 @@ public class Matrix<T> {
 			throw new ArrayIndexOutOfBoundsException("Index out of bounds");
 		}
 		matrix.get(rowIndex).set(columnIndex, element);
-	}
-
-	public void addElement(T element, int rowIndex, int columnIndex) {
-		if(rowIndex < 0 || rowIndex >= rowLength || columnIndex < 0 || columnIndex >= columnLength) {
-			throw new ArrayIndexOutOfBoundsException("Index out of bounds");
-		}
-		matrix.get(rowIndex).add(columnIndex, element);
 	}
 }
