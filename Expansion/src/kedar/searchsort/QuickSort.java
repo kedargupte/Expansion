@@ -11,8 +11,8 @@ public class QuickSort {
 		QuickSort quickSort = new QuickSort();
 		Integer minIndex = 0, maxIndex = integerArray.length - 1, partition = (minIndex + (int)((maxIndex - minIndex) * Math.random()));
 		System.out.println("Partition is index " + partition + " : " + integerArray[partition]);
-		System.out.println(
-				Arrays.toString(quickSort.partition(integerArray, partition, minIndex, maxIndex)));
+		quickSort.partition(integerArray, partition, minIndex, maxIndex);
+		System.out.println(Arrays.toString(integerArray));
 		System.out.println(
 				Arrays.toString(quickSort.quickSort(integerArray, minIndex, maxIndex)));
 	}
@@ -20,17 +20,17 @@ public class QuickSort {
 	Integer[] quickSort(Integer integerArray[], Integer minIndex, Integer maxIndex) {
 		if(maxIndex > minIndex) {
 			Integer partition = (minIndex + (int)((maxIndex - minIndex) * Math.random()));
-			partition(integerArray, partition, minIndex, maxIndex);
+			partition = partition(integerArray, partition, minIndex, maxIndex);
 			quickSort(integerArray, minIndex, partition);
 			quickSort(integerArray, partition + 1, maxIndex);
 		}
 		return integerArray;
 	}
 	
-	Integer[] partition(Integer integerArray[], Integer partitionIndex, Integer minIndex, Integer maxIndex) {
+	Integer partition(Integer integerArray[], Integer partitionIndex, Integer minIndex, Integer maxIndex) {
 	
 		Integer originalPartitionIndex = partitionIndex;
-		int i = 0;
+		int i = minIndex;
 		while(i <= partitionIndex) {
 			if(integerArray[i] > integerArray[partitionIndex]) {
 				Integer temp = integerArray[i];
@@ -59,21 +59,7 @@ public class QuickSort {
 			}
 			i++;
 		}
-		return integerArray;
-	}
-	
-	Integer[] copyArray(Integer integerArray[], Integer start, Integer end) {
-		if(end - start < 0 || start < 0 && end >= integerArray.length) {
-			return null;
-		} else {
-			Integer copyLength = end - start + 1;
-			Integer copy[] = new Integer[copyLength];
-			for(int i = 0; i < copyLength; i++) {
-				copy[i] = integerArray[start];
-				start++;
-			}
-			return copy;
-		}
+		return partitionIndex;
 	}
 
 }
