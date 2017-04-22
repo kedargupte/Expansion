@@ -14,9 +14,9 @@ public class BubbleSort {
 	}
 	
 	Integer[] bubbleSort(Integer integerArray[]) {
-		Integer finalIndex = integerArray.length;
+		Integer finalIndex = integerArray.length - 1;
 		while(finalIndex > 0) {
-			for(int i = 1; i < finalIndex; i++) {
+			for(int i = 1; i <= finalIndex; i++) {
 				if(integerArray[i] < integerArray[i-1]) {
 					Integer temp = integerArray[i-1];
 					integerArray[i-1] = integerArray[i];
