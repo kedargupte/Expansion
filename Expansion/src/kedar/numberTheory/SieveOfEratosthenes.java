@@ -8,7 +8,7 @@ public class SieveOfEratosthenes {
 	
 	public static void main(String[] args) {
 		
-		Integer limit = 53;
+		Integer limit = 113;
 		SieveOfEratosthenes sieveOfEratosthenes = new SieveOfEratosthenes();
 		List<Integer> listOfPrimes = sieveOfEratosthenes.filterPrimes(limit);
 		System.out.println("List of primes less than " + limit);
@@ -31,6 +31,31 @@ public class SieveOfEratosthenes {
 		List<Integer> listOfPrimes = new ArrayList<>();
 		for(int k = 2; k <= limit; k++) {
 			if(booleanArray[k] == 0)
+				listOfPrimes.add(k);
+		}
+		return listOfPrimes;
+	}
+	
+	List<Integer> filterPrimesOptimized(Integer limit) {
+		Integer booleanArray[] = new Integer[limit+1];
+		Arrays.fill(booleanArray, -1);
+		
+		for(int i = 2; i <= (int)Math.ceil(Math.sqrt(limit)); i++) {
+			// Integer is not visited or it is categorized as non prime
+			if(booleanArray[i] != 0 || booleanArray[i] == -1) {
+				booleanArray[i] = 1;
+				Integer j = i + i;
+				while(j <= limit) {
+					if(booleanArray[j] == -1 && j % i == 0)
+						booleanArray[j] = 0;
+					j += i;
+				}
+			}
+		}
+		
+		List<Integer> listOfPrimes = new ArrayList<>();
+		for(int k = 2; k <= limit; k++) {
+			if(booleanArray[k] == 1 || booleanArray[k] == -1)
 				listOfPrimes.add(k);
 		}
 		return listOfPrimes;
